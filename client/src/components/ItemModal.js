@@ -9,7 +9,6 @@ import {
   Label,
   Input,
 } from "reactstrap";
-import { v1 as uuid } from "uuid";
 //have to import connect to use redux state in react component
 import { connect } from "react-redux";
 import { addItem } from "../actions/itemActions";
@@ -35,7 +34,6 @@ class ItemModal extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const newItem = {
-      id: uuid(),
       name: this.state.name,
     };
     //add item via addItem action
