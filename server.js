@@ -10,7 +10,11 @@ const app = express();
 app.use(bodyParser.json());
 
 //db config//
-const db = require("./config/db").mongoURI;
+// const db = require("./config/db").mongoURI;
+const db =
+  process.env.NODE_ENV === "production"
+    ? process.env.MongoURI
+    : require("./config/db").mongoURI;
 
 //connect to mongo//
 mongoose
