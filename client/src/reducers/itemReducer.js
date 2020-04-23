@@ -1,5 +1,4 @@
 // reducers is where state goes.. check actions---actions dispatch to reducers-- payloads etc. and reducers pass to react//
-import { v1 as uuid } from "uuid";
 import {
   GET_ITEMS,
   ADD_ITEM,
