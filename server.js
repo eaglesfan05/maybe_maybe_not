@@ -29,6 +29,7 @@ mongoose
 //anything that goes to route refers to items variable
 app.use("/api/items", require("./routes/API/Items"));
 app.use("/api/users", require("./routes/API/Users"));
+app.use("/api/auth", require("./routes/API/Auth"));
 
 //server static assets(aka build folder) if in production
 if (process.env.NODE_ENV === "production") {

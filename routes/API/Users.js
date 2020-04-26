@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
   // check for existing user
   // checks for email thats equal to email variable
   User.findOne({ email }).then((user) => {
-    if (user) return res.status(400).json({ msg: "User alread exists" });
+    if (user) return res.status(400).json({ msg: "User already exists" });
     //if no user//
     const newUser = new User({
       name,
