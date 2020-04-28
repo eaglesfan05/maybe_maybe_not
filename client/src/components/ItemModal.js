@@ -9,6 +9,7 @@ import {
   Label,
   Input,
 } from "reactstrap";
+import PropTypes from "prop-types";
 //have to import connect to use redux state in react component
 import { connect } from "react-redux";
 import { addItem } from "../actions/itemActions";
@@ -19,7 +20,9 @@ class ItemModal extends Component {
     modal: false,
     name: "",
   };
-
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+  };
   toggle = () => {
     this.setState({
       modal: !this.state.modal,
@@ -45,13 +48,18 @@ class ItemModal extends Component {
   render() {
     return (
       <div>
-        <Button
-          color="dark"
-          style={{ marginBottom: "2rem" }}
-          onClick={this.toggle}
-        >
-          Add Item
-        </Button>
+        {this.props.isAuthenticated ? (
+          <Button
+            color="dark"
+            style={{ marginBottom: "2rem" }}
+            onClick={this.toggle}
+          >
+            Add Item
+          </Button>
+        ) : (
+          <h4 className="mb-3 ml-4">Please Login to manage Items</h4>
+        )}
+
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Add to Shopping List</ModalHeader>
           <ModalBody>
@@ -79,5 +87,6 @@ class ItemModal extends Component {
 
 const mapStatetoProps = (state) => ({
   item: state.item,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 export default connect(mapStatetoProps, { addItem })(ItemModal);
